@@ -134,15 +134,15 @@
                 <div class="form-row" style="margin-top: 5%;">
                   <div class="form-group">
                     <label id="error1" style="display: none;color:red;">Enter Valid Name!!!</label><br>
-                    <input type="text" class="form-control" style="width: 50%;border-radius: 8px;border: 0ch;border-bottom: solid purple 3px;background: rgba(0, 0, 0, 0);color: purple;font-weight: bold;" id="inpName" placeholder="Name" name="name" required><br>
+                    <input type="text" class="form-control" style="width: 50%;border-radius: 8px;border: 0ch;border-bottom: solid purple 3px;background: rgba(0, 0, 0, 0);color: purple;font-weight: bold;" id="inpName" placeholder="Name" name="name" minlength="3"><br>
                   </div>
                   <div class="form-group">
                     <label id="error2" style="display: none;color: red;">Enter Valid Email!!!</label><br>
-                    <input type="email" class="form-control" style="width: 50%;border-radius: 8px;border: 0ch;border-bottom: solid purple 3px;background: 0;color: purple;font-weight: bold;" id="inpEmail" placeholder="Email" name="email" required><br><br>
+                    <input type="email" class="form-control" style="width: 50%;border-radius: 8px;border: 0ch;border-bottom: solid purple 3px;background: 0;color: purple;font-weight: bold;" id="inpEmail" placeholder="Email" name="email"><br><br>
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" style="width: 50%;border-radius: 8px;border: 0ch;border-bottom: solid purple 3px;background: 0;color: purple;font-weight: bold;" id="inpMsg" placeholder="Message" name="Message"><br>
+                  <input type="text" class="form-control" style="width: 50%;border-radius: 8px;border: 0ch;border-bottom: solid purple 3px;background: 0;color: purple;font-weight: bold;" minlength="5" id="inpMsg" placeholder="Message" name="Message"><br>
                 </div>
                 <div class="form-group text-center">
                 <button type="submit" class="btn" id="btn" style="border: solid purple 3px;border-radius: 8px;background-color: 0;color: purple;font-weight: bold;display: none;">Send</button><br><br><br>
