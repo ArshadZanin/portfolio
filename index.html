@@ -175,23 +175,16 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 <script>
  $(document).ready(function(){
-    $("#name").keyup(function(){
-      if (this.value != this.value.replace(/[^a-zA-Z. .\.]/g, '')){
-        this.value=this.value.replace(/[^a-zA-Z\.]/g, '');
-        if(name.value ==='' || name.value ==null){
-          message.push("Maximum 3 character is needed");
-        }
-      }
-    }) 
-    $("#mobile").keyup(function(){
-      if (this.value != this.value.replace(/[^0-9.\.]/g, '')){
-        this.value=this.value.replace(/[^0-9\.]/g, '');
-        if(mobile.value.length >=10){
-          message.push("mobile number mxm 10 character")
-        }
-
-      }
-    })
+  $('#inpName').keyup(function () {
+    if (this.value != this.value.replace(/[^a-zA-Z. .\.]/g, '')) {
+       this.value = this.value.replace(/[^a-zA-Z\.]/g, '');
+    }
+    });
+    $('#inpPhone').keyup(function () {
+    if (this.value != this.value.replace(/[^0-9. .\.]/g, '')) {
+       this.value = this.value.replace(/[^0-9\.]/g, '');
+    }
+    });
 
     $("#submit-form").validate({
             rules:{
