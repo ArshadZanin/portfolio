@@ -133,19 +133,20 @@
             <form id="submit-form" action="">
                 <div class="form-row" style="margin-top: 5%;">
                   <div class="form-group">
-                    <label id="error1" style="display: none;color:red;">Enter Valid Name!!!</label><br>
                     <input type="text" class="form-control" style="width: 50%;border-radius: 8px;border: 0ch;border-bottom: solid purple 3px;background: rgba(0, 0, 0, 0);color: purple;font-weight: bold;" id="inpName" placeholder="Name" name="name" minlength="3"><br>
                   </div>
                   <div class="form-group">
-                    <label id="error2" style="display: none;color: red;">Enter Valid Email!!!</label><br>
-                    <input type="email" class="form-control" style="width: 50%;border-radius: 8px;border: 0ch;border-bottom: solid purple 3px;background: 0;color: purple;font-weight: bold;" id="inpEmail" placeholder="Email" name="email"><br><br>
+                    <input type="email" class="form-control" style="width: 50%;border-radius: 8px;border: 0ch;border-bottom: solid purple 3px;background: 0;color: purple;font-weight: bold;" id="inpEmail" placeholder="Email" name="email" minlength="5"><br><br>
+                  </div>
+                  <div class="form-group">
+                    <input type="phone" class="form-control" style="width: 50%;border-radius: 8px;border: 0ch;border-bottom: solid purple 3px;background: 0;color: purple;font-weight: bold;" id="inpPhone" placeholder="Mobile" name="phone" minlength="10" maxlength="10"><br><br>
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" style="width: 50%;border-radius: 8px;border: 0ch;border-bottom: solid purple 3px;background: 0;color: purple;font-weight: bold;" minlength="5" id="inpMsg" placeholder="Message" name="Message"><br>
+                  <input type="text" class="form-control" style="width: 50%;border-radius: 8px;border: 0ch;border-bottom: solid purple 3px;background: 0;color: purple;font-weight: bold;" minlength="12" id="inpMsg" placeholder="Message" name="Message"><br>
                 </div>
                 <div class="form-group text-center">
-                <button type="submit" class="btn" id="btn" style="border: solid purple 3px;border-radius: 8px;background-color: 0;color: purple;font-weight: bold;display: none;">Send</button><br><br><br>
+                <button  onclick="myFunction()" type="submit" class="btn" id="btn" style="border: solid purple 3px;border-radius: 8px;background-color: 0;color: purple;font-weight: bold;">Send</button><br><br><br>
                 </div>
             </form>
         </div>
@@ -171,55 +172,68 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 <script>
-  $(document).ready(function(){
-    $('#inpName').keyup(function () {
-    if (this.value != this.value.replace(/[^a-zA-Z. .\.]/g, '')) {
-       this.value = this.value.replace(/[^a-zA-Z\.]/g, '');
-    }
-    });
-    $("#inpName").keyup(function () {    
-      var inputvalues = $(this).val();    
-      var regex = /^([a-zA-Z. .+-])+$/;    
-      if(inputvalues.length<3 ||(!regex.test(inputvalues))){
-        $("#error1").show();
-        $("#btn").hide();
-            }else{
-              $("#error1").hide();
-              $("#btn").show();
+ $(document).ready(function(){
+    $("#name").keyup(function(){
+      if (this.value != this.value.replace(/[^a-zA-Z. .\.]/g, '')){
+        this.value=this.value.replace(/[^a-zA-Z\.]/g, '');
+        if(name.value ==='' || name.value ==null){
+          message.push("Maximum 3 character is needed");
+        }
+      }
+    }) 
+    $("#mobile").keyup(function(){
+      if (this.value != this.value.replace(/[^0-9.\.]/g, '')){
+        this.value=this.value.replace(/[^0-9\.]/g, '');
+        if(mobile.value.length >=10){
+          message.push("mobile number mxm 10 character")
+        }
 
-            }    
-      })
-    $("#inpEmail").keyup(function () {    
-      var inputvalues = $(this).val();    
-      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;    
-      if(!regex.test(inputvalues)){
-        $("#error2").show();
-        $("#btn").hide();
+      }
+    })
 
-            }else{
-              $("#error2").hide();
-              $("#btn").show();
-            }    
-      })
-
-      $("#submit-form").submit((e)=>{
-      e.preventDefault()
-      $.ajax({
-          url:"https://script.google.com/macros/s/AKfycbzjWd_m9NCLei0JlYdwXtbJxmc8ACzNlHBtMRKQyjuHkSix7MWsWVtnt60WKIYAygNrbA/exec",
-          data:$("#submit-form").serialize(),
-          method:"post",
-          success:function (response){
-              alert("Form submitted successfully")
-              window.location.reload()
-          },
-          error:function (err){
-              alert("Something Error")
-
+    $("#submit-form").validate({
+            rules:{
+              name:{
+                required:true,
+                minlength:4
+              },
+              phone:{
+                required:true,
+                minlength:10,
+                maxlength:10
+              },
+              email:{
+                required:true,
+                email:true
+              },
+              Message:{
+                required:true,
+                minlength:12
+                
+              }
+            },
+            submitHandler: function(form){
+            $.ajax({
+                url:"https://script.google.com/macros/s/AKfycbzjWd_m9NCLei0JlYdwXtbJxmc8ACzNlHBtMRKQyjuHkSix7MWsWVtnt60WKIYAygNrbA/exec",
+                data:$("#submit-form").serialize(),
+                method:"post",
+                success:function (response){
+                    alert("Form submitted successfully")
+                    window.location.reload()
+                    //window.location.href="https://google.com"
+                },
+                error:function (err){
+                    alert("Something Error")
+    
+                }
+            })
           }
-      })
-  })
-  })
+        })
+
+  });
+
 </script>
   </body>
 </html>
